@@ -65,7 +65,6 @@ class _DateOfBirthScrrenState extends State<DateOfBirthScrren> {
         dateOfBirth1.text = DateFormat('dd/MM/yyyy').format(picked);
     }
   }
-
   Future<void> _selectDate2(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
