@@ -7,6 +7,9 @@ class globalVar {
   static RxInt onSelectScreen = 0.obs;
   static RxString name1 = "".obs;
   static RxString name2 = "".obs;
+  static RxString loveQuotesTitel = "".obs;
+  static RxString totalCountLove = "".obs;
+  static RxInt indexOFList =0.obs;
 }
 
 bool debugMode = false;

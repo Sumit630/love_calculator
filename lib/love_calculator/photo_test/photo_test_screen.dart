@@ -112,11 +112,11 @@ class _PhotoTestScreenState extends State<PhotoTestScreen> {
       customPrint(globalVar.name1);
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xffFFBEC1),
+          backgroundColor:Colors.red,
           title: Text(
             "Photo Calculator",
             style: GoogleFonts.rubik(
-                fontSize: 24, fontWeight: FontWeight.w200, color: Colors.black),
+                fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),
           ),
         ),
         backgroundColor: Colors.white,

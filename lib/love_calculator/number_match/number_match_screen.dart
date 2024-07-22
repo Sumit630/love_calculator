@@ -88,11 +88,11 @@ class _NumberMatchScreenState extends State<NumberMatchScreen> {
     double screenHeight = mediaQueryData.size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xffFFBEC1),
+        backgroundColor:Colors.red,
         title: Text(
           "Number Match Calculator",
           style: GoogleFonts.rubik(
-              fontSize: 24, fontWeight: FontWeight.w200, color: Colors.black),
+              fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),
         ),
       ),
       body: Obx(() {

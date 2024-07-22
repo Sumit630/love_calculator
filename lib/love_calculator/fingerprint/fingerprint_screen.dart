@@ -101,11 +101,11 @@ class _FingerprintScreenState extends State<FingerprintScreen> {
     double screenHeight = mediaQueryData.size.height;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xffFFBEC1),
+        backgroundColor:Colors.red,
         title: Text(
           "Fingerprint Calculator",
           style: GoogleFonts.rubik(
-              fontSize: 24, fontWeight: FontWeight.w200, color: Colors.black),
+              fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),
         ),
       ),
       body: Obx(() {

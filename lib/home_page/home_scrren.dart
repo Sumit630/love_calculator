@@ -57,15 +57,15 @@ class _HomeScrrenState extends State<HomeScrren> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        return false;
+        return true;
       },
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color(0xffFFBEC1),
+          backgroundColor: Colors.red,
           title: Text(
             "Love Calculator",
             style: GoogleFonts.rubik(
-                fontSize: 24, fontWeight: FontWeight.w200, color: Colors.black),
+                fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),
           ),
         ),
         body: SingleChildScrollView(
@@ -128,7 +128,7 @@ class _HomeScrrenState extends State<HomeScrren> {
                           vertical: 10, horizontal: 10),
                       child: Container(
                         decoration: const BoxDecoration(
-                            color: Color(0xffFFBEC1),
+                            color:Colors.red,
                             borderRadius:
                                 BorderRadius.all(Radius.circular(10))),
                         child: Column(
@@ -141,7 +141,7 @@ class _HomeScrrenState extends State<HomeScrren> {
                               style: GoogleFonts.rubik(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w400,
-                                  color: Colors.black),
+                                  color: Colors.white),
                             )
                           ],
                         ),

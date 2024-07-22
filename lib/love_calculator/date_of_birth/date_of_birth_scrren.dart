@@ -104,11 +104,11 @@ class _DateOfBirthScrrenState extends State<DateOfBirthScrren> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xffFFBEC1),
+        backgroundColor:Colors.red,
         title: Text(
           "Date of Birth",
           style: GoogleFonts.rubik(
-              fontSize: 24, fontWeight: FontWeight.w200, color: Colors.black),
+              fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),
         ),
       ),
       body: Obx(() {

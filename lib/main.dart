@@ -9,7 +9,7 @@ import 'package:love_calculatror/splash_screen.dart';
 import 'global.dart';
 
 //SharedPreferences? prefs;
-// const String appName = "B.AI";
+const String appName = "Love Test";
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       builder: (context, Widget) {
         return GetMaterialApp(
+            title: appName,
             theme: ThemeData(useMaterial3: false),
             // theme: ThemeData(useMaterial3: false,primaryColor: colorCustom),
             debugShowCheckedModeBanner: false,
