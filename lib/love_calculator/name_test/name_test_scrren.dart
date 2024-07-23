@@ -4,6 +4,7 @@ import 'dart:math';
 import 'dart:ui' as ui;
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -14,6 +15,7 @@ import 'package:love_calculatror/global.dart';
 import 'package:love_calculatror/love_calculator/date_of_birth/date_of_birth_scrren.dart';
 import 'package:love_calculatror/love_calculator/fingerprint/fingerprint_screen.dart';
 import 'package:love_calculatror/love_calculator/number_match/number_match_screen.dart';
+import 'package:love_calculatror/wigets/button_custom.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -84,10 +86,10 @@ class _NameTestScreenState extends State<NameTestScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor:Colors.red,
-        title: Text(
+        title: const Text(
           "Love Calculator",
-          style: GoogleFonts.rubik(
-              fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),
+          style: TextStyle(
+              fontSize: 24, color: Colors.white, fontFamily: "loveLike"),
         ),
       ),
       body: Obx(() {
@@ -111,86 +113,86 @@ class _NameTestScreenState extends State<NameTestScreen> {
                 ),
               ),
               const SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: () {
-                  //name test
-                  if (globalVar.onSelectScreen.value == 0) {
-                    _calculateLove();
-                  }
-                  //photo test Screen
-                  else if (globalVar.onSelectScreen.value == 1) {
-                    if (_name1Controller.text.isEmpty ||
-                        _name2Controller.text.isEmpty) {
-                      _result('Please enter both names!');
-                      return;
+              CustomButton(
+                  width: 120,
+                  text: "Calculate Love",
+                  onPressed: () {
+                    //name test
+                    if (globalVar.onSelectScreen.value == 0) {
+                      _calculateLove();
                     }
-                    globalVar.name1(_name1Controller.text);
-                    globalVar.name2(_name2Controller.text);
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return const PhotoTestScreen();
-                      },
-                    ));
-                  }
-                  // date of barth screen
-                  else if (globalVar.onSelectScreen.value == 2) {
-                    if (_name1Controller.text.isEmpty ||
-                        _name2Controller.text.isEmpty) {
-                      _result('Please enter both names!');
-                      return;
+                    //photo test Screen
+                    else if (globalVar.onSelectScreen.value == 1) {
+                      if (_name1Controller.text.isEmpty ||
+                          _name2Controller.text.isEmpty) {
+                        _result('Please enter both names!');
+                        return;
+                      }
+                      globalVar.name1(_name1Controller.text);
+                      globalVar.name2(_name2Controller.text);
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return const PhotoTestScreen();
+                        },
+                      ));
                     }
-                    globalVar.name1(_name1Controller.text);
-                    globalVar.name2(_name2Controller.text);
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return const DateOfBirthScrren();
-                      },
-                    ));
-                  }
-                  // fingerprint screen
-                  else if (globalVar.onSelectScreen.value == 3) {
-                    if (_name1Controller.text.isEmpty ||
-                        _name2Controller.text.isEmpty) {
-                      _result('Please enter both names!');
-                      return;
+                    // date of barth screen
+                    else if (globalVar.onSelectScreen.value == 2) {
+                      if (_name1Controller.text.isEmpty ||
+                          _name2Controller.text.isEmpty) {
+                        _result('Please enter both names!');
+                        return;
+                      }
+                      globalVar.name1(_name1Controller.text);
+                      globalVar.name2(_name2Controller.text);
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return const DateOfBirthScrren();
+                        },
+                      ));
                     }
-                    globalVar.name1(_name1Controller.text);
-                    globalVar.name2(_name2Controller.text);
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return const FingerprintScreen();
-                      },
-                    ));
-                  } else if (globalVar.onSelectScreen.value == 4) {
-                    if (_name1Controller.text.isEmpty ||
-                        _name2Controller.text.isEmpty) {
-                      _result('Please enter both names!');
-                      return;
+                    // fingerprint screen
+                    else if (globalVar.onSelectScreen.value == 3) {
+                      if (_name1Controller.text.isEmpty ||
+                          _name2Controller.text.isEmpty) {
+                        _result('Please enter both names!');
+                        return;
+                      }
+                      globalVar.name1(_name1Controller.text);
+                      globalVar.name2(_name2Controller.text);
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return const FingerprintScreen();
+                        },
+                      ));
+                    } else if (globalVar.onSelectScreen.value == 4) {
+                      if (_name1Controller.text.isEmpty ||
+                          _name2Controller.text.isEmpty) {
+                        _result('Please enter both names!');
+                        return;
+                      }
+                      globalVar.name1(_name1Controller.text);
+                      globalVar.name2(_name2Controller.text);
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return const NumberMatchScreen();
+                        },
+                      ));
+                    } else if (globalVar.onSelectScreen.value == 5) {
+                      if (_name1Controller.text.isEmpty ||
+                          _name2Controller.text.isEmpty) {
+                        _result('Please enter both names!');
+                        return;
+                      }
+                      globalVar.name1(_name1Controller.text);
+                      globalVar.name2(_name2Controller.text);
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return const HorsoscopeMatchScreen();
+                        },
+                      ));
                     }
-                    globalVar.name1(_name1Controller.text);
-                    globalVar.name2(_name2Controller.text);
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return const NumberMatchScreen();
-                      },
-                    ));
-                  } else if (globalVar.onSelectScreen.value == 5) {
-                    if (_name1Controller.text.isEmpty ||
-                        _name2Controller.text.isEmpty) {
-                      _result('Please enter both names!');
-                      return;
-                    }
-                    globalVar.name1(_name1Controller.text);
-                    globalVar.name2(_name2Controller.text);
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return const HorsoscopeMatchScreen();
-                      },
-                    ));
-                  }
-                },
-                child: const Text('Calculate Love'),
-              ),
+                  }),
               const SizedBox(height: 16.0),
               (_countdownValue.value == 0)
                   ? const SizedBox()
@@ -204,10 +206,11 @@ class _NameTestScreenState extends State<NameTestScreen> {
                             _result.value.isEmpty
                                 ? '${_countdownValue.value}%'
                                 : _result.value,
-                            style: GoogleFonts.rubik(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
+                            style:TextStyle(
+                              fontSize: 30,
+                              color: Colors.white,
+                                fontFamily: "loveLike"
+                            ),
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -223,11 +226,10 @@ class _NameTestScreenState extends State<NameTestScreen> {
                                       .toString()
                                       .toUpperCase()
                                       .substring(0, 1),
-                                  style: GoogleFonts.rubik(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.w200,
-                                      color: Colors.white),
-                                ),
+                                    style: const TextStyle(
+                                        fontSize: 24,
+                                        color: Colors.white,
+                                        fontFamily: "loveLike")),
                               ),
                               Container(
                                 height: 50,
@@ -240,10 +242,11 @@ class _NameTestScreenState extends State<NameTestScreen> {
                                       .toString()
                                       .toUpperCase()
                                       .substring(0, 1),
-                                  style: GoogleFonts.rubik(
+                                  style: const TextStyle(
+                                      color: Colors.white,
                                       fontSize: 24,
-                                      fontWeight: FontWeight.w200,
-                                      color: Colors.white),
+                                      fontFamily: "loveLike",
+                                  ),
                                 ),
                               ),
                             ],
@@ -252,12 +255,14 @@ class _NameTestScreenState extends State<NameTestScreen> {
                       ),
                     ),
               (_countdownValue.value == 0)
-                  ? SizedBox()
-                  : ElevatedButton(
+                  ? const SizedBox()
+                  : CustomButton(
+                      width: 120,
+                      text: "Share",
                       onPressed: () {
                         _captureAndSharePng();
                       },
-                      child: Text("Share")),
+                    ),
             ],
           ),
         );

@@ -1,4 +1,4 @@
-class LoveConttrolerPage{
+class LoveControllerPage{
   static List<String> nameListLoveMessages = [
     "The More I Meet U The More\nU Appear New.. The More I\nKnow U The More I Want To\nLove U.. Each Day My Love\nFor U Is My First Love..\nBcoz, Each Day I Feel As If I\nHave Just Started Loving U..!",
     "I Get Jealous, I Get\nMad, I Get Worried, I Get\nCurious.. But, Thats Only\nBcoz I Love U So Much,\nAnd I Dont Want To Lose U..!",

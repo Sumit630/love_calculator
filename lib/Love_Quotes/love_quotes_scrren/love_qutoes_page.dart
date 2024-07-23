@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:love_calculatror/global.dart';
+
 import 'love_qutoes_peta_list_show.dart';
 
 class LoveQutoesPage extends StatefulWidget {
@@ -41,18 +41,20 @@ class _LoveQutoesPageState extends State<LoveQutoesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Love  Quotes",
-          style: GoogleFonts.rubik(
-              fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),
-        ),
+        title: const Text("Love  Quotes",
+            style: TextStyle(
+                fontSize: 30, color: Colors.white, fontFamily: "loveLike")),
         backgroundColor: Colors.red,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ListView.builder(physics: ClampingScrollPhysics(),shrinkWrap: true,itemCount: nameList.length,itemBuilder:(context, index) {
-              return Card(
+            ListView.builder(
+              physics: const ClampingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: nameList.length,
+              itemBuilder: (context, index) {
+                return Card(
                 elevation: 1,
                 child:ListTile(
                   onTap: () {
@@ -67,14 +69,19 @@ class _LoveQutoesPageState extends State<LoveQutoesPage> {
                       children: [
                         TextSpan(
                             text: '${totalCount[index]}   ',
-                          style: GoogleFonts.rubik(
-                              fontSize: 20, fontWeight: FontWeight.w400, color: Colors.black),),
-                        TextSpan(
+                              style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                  fontFamily: "loveLike")),
+                          TextSpan(
                             text: nameList[index],
-                          style: GoogleFonts.afacad(
-                              fontSize: 20, fontWeight: FontWeight.w400, color: Colors.redAccent),),
-                      ],
-                    ),
+                            style: const TextStyle(
+                                color: Colors.red,
+                                fontSize: 20,
+                                fontFamily: "loveLike"),
+                          ),
+                        ],
+                      ),
                   ),
                 ),
               );

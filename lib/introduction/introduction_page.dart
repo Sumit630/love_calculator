@@ -77,6 +77,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
       },
       child: Scaffold(
         drawer: Drawer(
+          backgroundColor: Colors.redAccent,
           child: SafeArea(
             child: Column(
               children: [
@@ -85,9 +86,9 @@ class _IntroductionPageState extends State<IntroductionPage> {
                   height:screenHeight/5,
                   width:screenWidth,
                   decoration: const BoxDecoration(
-                    color: Colors.red,
                     borderRadius: BorderRadius.all(Radius.circular(10))
                   ),
+                  child: Image.asset("images/hart.png"),
 
                 ),
                 ListView.builder(shrinkWrap: true,itemCount: 4,itemBuilder:(context, index) {
@@ -101,15 +102,17 @@ class _IntroductionPageState extends State<IntroductionPage> {
                           color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(10))
                       ),
-                      child: Row(
-                        children: [
-                          Icon(iconList[index], color: iconColor[index]),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text("${iconText[index]}", style: GoogleFonts.rubik(
-                              fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),),
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical:10,horizontal: 10),
+                        child: Row(
+                          children: [
+                            Icon(iconList[index], color: iconColor[index]),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text("${iconText[index]}", style: TextStyle(fontSize: 20,fontFamily: "loveLike",fontWeight: FontWeight.w200)),
+                          ],
+                        ),
                       ),
                     ),
                   );
@@ -121,26 +124,23 @@ class _IntroductionPageState extends State<IntroductionPage> {
         appBar: AppBar(
           title: Text(
             "Love Calculator",
-            style: GoogleFonts.rubik(
-                fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),
+            style:TextStyle(
+              fontSize:30,
+                fontFamily: "loveLike",
+              color: Colors.white
+            ),
           ),
           backgroundColor: Colors.red,
         ),
         body:Padding(
           padding: const EdgeInsets.symmetric(vertical: 30,horizontal: 10),
           child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                height: screenHeight/3,
-                width: screenWidth,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: Colors.red,
-                ),
-              ),
-              const SizedBox(
-                height:100,
+              Image(image: AssetImage("images/love.png")),
+              Text("Love Matters",style: TextStyle(color: Colors.black,fontSize:40,fontFamily: "loveLike"),),
+              SizedBox(
+                height:70,
               ),
               InkWell(
                 onTap: () {
@@ -156,8 +156,9 @@ class _IntroductionPageState extends State<IntroductionPage> {
                     borderRadius: BorderRadius.all(Radius.circular(10))
                   ),
                   alignment: Alignment.center,
-                  child: Text("Love Test",style: GoogleFonts.rubik(
-                      fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),),
+                  child: Text("Love Test",style: TextStyle(
+                    fontSize: 24,color: Colors.white,fontFamily: "loveLike"
+                  )),
                 ),
               ),
               const SizedBox(
@@ -177,8 +178,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
                       borderRadius: BorderRadius.all(Radius.circular(10))
                   ),
                   alignment: Alignment.center,
-                  child: Text("Love Quotes",style: GoogleFonts.rubik(
-                      fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),),
+                  child: Text("Love Quotes",style: TextStyle(fontSize: 24,color: Colors.white,fontFamily: "loveLike"),),
                 ),
               ),
             ],

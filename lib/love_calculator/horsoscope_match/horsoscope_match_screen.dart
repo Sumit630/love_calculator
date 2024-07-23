@@ -4,6 +4,7 @@ import 'dart:math';
 import 'dart:ui' as ui;
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -11,6 +12,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:love_calculatror/global.dart';
+import 'package:love_calculatror/wigets/button_custom.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -151,7 +153,7 @@ class _HorsoscopeMatchScreenState extends State<HorsoscopeMatchScreen> {
                 height: screenHeight / 14,
                 decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    border: Border.all(color: Colors.pinkAccent, width: 2)),
+                    border: Border.all(color: Colors.red, width: 2)),
                 alignment: Alignment.center,
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
@@ -197,7 +199,7 @@ class _HorsoscopeMatchScreenState extends State<HorsoscopeMatchScreen> {
                 height: screenHeight / 14,
                 decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    border: Border.all(color: Colors.pinkAccent, width: 2)),
+                    border: Border.all(color: Colors.red, width: 2)),
                 alignment: Alignment.center,
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
@@ -236,11 +238,13 @@ class _HorsoscopeMatchScreenState extends State<HorsoscopeMatchScreen> {
                   : Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ElevatedButton(
-                            onPressed: () {
+                        CustomButton(
+                            width: 120,
+                            text: "Calculate",
+                            onPressed:(){
                               _calculateLove();
-                            },
-                            child: const Text("Calculate")),
+                        }
+                        ),
                       ],
                     ),
               (_countdownValue.value == 0)
@@ -257,10 +261,7 @@ class _HorsoscopeMatchScreenState extends State<HorsoscopeMatchScreen> {
                               _result.value.isEmpty
                                   ? '${_countdownValue.value}%'
                                   : _result.value,
-                              style: GoogleFonts.rubik(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white),
+                              style:TextStyle(fontSize: 30,color: Colors.white,fontFamily: "loveLike")
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -340,12 +341,11 @@ class _HorsoscopeMatchScreenState extends State<HorsoscopeMatchScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   (_countdownValue.value == 0)
-                      ? SizedBox()
-                      : ElevatedButton(
-                          onPressed: () {
-                            _captureAndSharePng();
-                          },
-                          child: const Text("Share")),
+                      ? SizedBox():
+                      CustomButton(width: 120,text: "Share", onPressed:() {
+                        _captureAndSharePng();
+                      },)
+
                 ],
               )
             ],

@@ -4,6 +4,7 @@ import 'dart:math';
 import 'dart:ui' as ui;
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -12,6 +13,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:love_calculatror/global.dart';
+import 'package:love_calculatror/wigets/button_custom.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -113,7 +115,7 @@ class _NumberMatchScreenState extends State<NumberMatchScreen> {
                 height: screenHeight / 14,
                 decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    border: Border.all(color: Colors.pinkAccent, width: 2)),
+                    border: Border.all(color: Colors.red, width: 2)),
                 alignment: Alignment.center,
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<int>(
@@ -162,7 +164,7 @@ class _NumberMatchScreenState extends State<NumberMatchScreen> {
                 height: screenHeight / 14,
                 decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    border: Border.all(color: Colors.pinkAccent, width: 2)),
+                    border: Border.all(color: Colors.red, width: 2)),
                 alignment: Alignment.center,
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<int>(
@@ -201,11 +203,9 @@ class _NumberMatchScreenState extends State<NumberMatchScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        _calculateLove();
-                      },
-                      child: const Text("Calculator")),
+                  CustomButton(width: 120,text: "Calculator", onPressed:() {
+                    _calculateLove();
+                  },),
                 ],
               ),
               (_countdownValue.value == 0)
@@ -222,10 +222,8 @@ class _NumberMatchScreenState extends State<NumberMatchScreen> {
                               _result.value.isEmpty
                                   ? '${_countdownValue.value}%'
                                   : _result.value,
-                              style: GoogleFonts.rubik(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white),
+                                //style: const TextStyle(fontSize:24,color: Colors.white,fontFamily: "loveLike"),
+                              style: TextStyle(color: Colors.white,fontSize: 30,fontFamily: "loveLike")
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -305,12 +303,12 @@ class _NumberMatchScreenState extends State<NumberMatchScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   (_countdownValue.value == 0)
-                      ? const SizedBox()
-                      : ElevatedButton(
-                          onPressed: () {
+                      ? const SizedBox():
+                      CustomButton(width: 120,text: "Share",
+                          onPressed:(){
                             _captureAndSharePng();
-                          },
-                          child: const Text("Share")),
+                          }
+                      ),
                 ],
               )
             ],

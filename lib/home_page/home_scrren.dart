@@ -62,10 +62,13 @@ class _HomeScrrenState extends State<HomeScrren> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.red,
-          title: Text(
+          title: const Text(
             "Love Calculator",
-            style: GoogleFonts.rubik(
-                fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 30,
+                fontFamily: "loveLike"
+            ),
           ),
         ),
         body: SingleChildScrollView(
@@ -83,42 +86,42 @@ class _HomeScrrenState extends State<HomeScrren> {
                         globalVar.onSelectScreen(0);
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return NameTestScreen();
+                            return const NameTestScreen();
                           },
                         ));
                       } else if (index == 1) {
                         globalVar.onSelectScreen(1);
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return NameTestScreen();
+                            return const NameTestScreen();
                           },
                         ));
                       } else if (index == 2) {
                         globalVar.onSelectScreen(2);
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return NameTestScreen();
+                            return const NameTestScreen();
                           },
                         ));
                       } else if (index == 3) {
                         globalVar.onSelectScreen(3);
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return NameTestScreen();
+                            return const NameTestScreen();
                           },
                         ));
                       } else if (index == 4) {
                         globalVar.onSelectScreen(4);
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return NameTestScreen();
+                            return const NameTestScreen();
                           },
                         ));
                       } else if (index == 5) {
                         globalVar.onSelectScreen(5);
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return NameTestScreen();
+                            return const NameTestScreen();
                           },
                         ));
                       }
@@ -136,12 +139,16 @@ class _HomeScrrenState extends State<HomeScrren> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             icon[index],
+                            SizedBox(
+                              height: 10,
+                            ),
                             Text(
                               "${textList[index]}",
-                              style: GoogleFonts.rubik(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white),
+                              style: const TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                  fontFamily: "loveLike"
+                              ),
                             )
                           ],
                         ),

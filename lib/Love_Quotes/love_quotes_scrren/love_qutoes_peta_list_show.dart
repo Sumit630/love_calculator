@@ -43,8 +43,11 @@ class _LoveQutoesPetaListShowState extends State<LoveQutoesPetaListShow> {
       appBar: AppBar(
         title: Text(
           "${globalVar.loveQuotesTitel}",
-          style: GoogleFonts.rubik(
-              fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize:30,
+              fontFamily: "loveLike"
+          ),
         ),
         backgroundColor: Colors.red,
       ),
@@ -122,18 +125,20 @@ class _LoveQutoesPetaListShowState extends State<LoveQutoesPetaListShow> {
                                           borderRadius:const BorderRadius.all(Radius.circular(10))
                                       ),
                                       alignment: Alignment.center,
-                                      child: Text("${index+1}",style: GoogleFonts.radley(
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.w200,
-                                          color: Colors.white),),
+                                      child: Text("${index+1}",style:const TextStyle(
+                                        fontSize: 25,
+                                        color: Colors.white,
+                                          fontFamily: "loveLike"
+                                      )),
                                     ),
                                     const SizedBox(
                                       width: 10,
                                     ),
-                                    Text("/${globalVar.totalCountLove}",style: GoogleFonts.radley(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.w200,
-                                        color: Colors.black),),
+                                    Text("/${globalVar.totalCountLove}",style:const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 25,
+                                        fontFamily: "loveLike"
+                                    ),),
                                   ],
                                 ),
                               ),
@@ -191,10 +196,11 @@ class _LoveQutoesPetaListShowState extends State<LoveQutoesPetaListShow> {
                                             ? LoveConttrolerPage.nameListOFRomanticQuotes[index]
                                             : LoveConttrolerPage.nameListOFBabyWishes[index],
                                         textAlign: TextAlign.center,
-                                        style: GoogleFonts.radley(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w200,
-                                            color: Colors.black),
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 24,
+                                            fontFamily: "loveLike"
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -350,7 +356,7 @@ class _LoveQutoesPetaListShowState extends State<LoveQutoesPetaListShow> {
                                           : (globalVar.loveQuotesTitel.value == "Romantic Quotes")
                                           ? LoveConttrolerPage.nameListOFRomanticQuotes[index]
                                           : LoveConttrolerPage.nameListOFBabyWishes[index]);
-                                    },child: Icon(Icons.share,color: Colors.black,)),
+                                    },child: const Icon(Icons.share,color: Colors.black,)),
                                   ],
                                 ),
                               ),
