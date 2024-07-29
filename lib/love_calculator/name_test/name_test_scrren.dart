@@ -19,6 +19,8 @@ import 'package:love_calculatror/wigets/button_custom.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../Ads/BannerAds/banner_ads.dart';
+import '../../Ads/IntrestialAds/intrestial_ads.dart';
 import '../horsoscope_match/horsoscope_match_screen.dart';
 import '../photo_test/photo_test_screen.dart';
 
@@ -86,6 +88,14 @@ class _NameTestScreenState extends State<NameTestScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor:Colors.red,
+        leading: InkWell(
+            onTap: () {
+              customPrint("ewgergs");
+              InterstitialAds.showAds(callBack : (){
+                Navigator.pop(context);
+              });
+            },
+            child: Icon(Icons.arrow_back,color: Colors.white,)),
         title: const Text(
           "Love Calculator",
           style: TextStyle(
@@ -93,183 +103,194 @@ class _NameTestScreenState extends State<NameTestScreen> {
         ),
       ),
       body: Obx(() {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              TextField(
-                controller: _name1Controller,
-                decoration: const InputDecoration(
-                  labelText: 'Your Name',
-                  border: OutlineInputBorder(),
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                TextField(
+                  controller: _name1Controller,
+                  decoration: const InputDecoration(
+                    labelText: 'Your Name',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16.0),
-              TextField(
-                controller: _name2Controller,
-                decoration: const InputDecoration(
-                  labelText: 'Partner\'s Name',
-                  border: OutlineInputBorder(),
+                const SizedBox(height: 16.0),
+                TextField(
+                  controller: _name2Controller,
+                  decoration: const InputDecoration(
+                    labelText: 'Partner\'s Name',
+                    border: OutlineInputBorder(),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16.0),
-              CustomButton(
-                  width: 120,
-                  text: "Calculate Love",
-                  onPressed: () {
-                    //name test
-                    if (globalVar.onSelectScreen.value == 0) {
-                      _calculateLove();
-                    }
-                    //photo test Screen
-                    else if (globalVar.onSelectScreen.value == 1) {
-                      if (_name1Controller.text.isEmpty ||
-                          _name2Controller.text.isEmpty) {
-                        _result('Please enter both names!');
-                        return;
+                const SizedBox(height: 16.0),
+                CustomButton(
+                    width: 120,
+                    text: "Calculate Love",
+                    onPressed: () {
+                      //name test
+                      if (globalVar.onSelectScreen.value == 0) {
+                        InterstitialAds.showAds(callBack : (){
+                          _calculateLove();
+                        });
                       }
-                      globalVar.name1(_name1Controller.text);
-                      globalVar.name2(_name2Controller.text);
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return const PhotoTestScreen();
-                        },
-                      ));
-                    }
-                    // date of barth screen
-                    else if (globalVar.onSelectScreen.value == 2) {
-                      if (_name1Controller.text.isEmpty ||
-                          _name2Controller.text.isEmpty) {
-                        _result('Please enter both names!');
-                        return;
+                      //photo test Screen
+                      else if (globalVar.onSelectScreen.value == 1) {
+                        InterstitialAds.showAds(callBack : (){
+                          if (_name1Controller.text.isEmpty ||
+                              _name2Controller.text.isEmpty) {
+                            _result('Please enter both names!');
+                            return;
+                          }
+                          globalVar.name1(_name1Controller.text);
+                          globalVar.name2(_name2Controller.text);
+                          nextPageFade(const  PhotoTestScreen());
+                        });
                       }
-                      globalVar.name1(_name1Controller.text);
-                      globalVar.name2(_name2Controller.text);
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return const DateOfBirthScrren();
-                        },
-                      ));
-                    }
-                    // fingerprint screen
-                    else if (globalVar.onSelectScreen.value == 3) {
-                      if (_name1Controller.text.isEmpty ||
-                          _name2Controller.text.isEmpty) {
-                        _result('Please enter both names!');
-                        return;
+                      // date of barth screen
+                      else if (globalVar.onSelectScreen.value == 2) {
+                        InterstitialAds.showAds(callBack : (){
+                          if (_name1Controller.text.isEmpty ||
+                              _name2Controller.text.isEmpty) {
+                            _result('Please enter both names!');
+                            return;
+                          }
+                          globalVar.name1(_name1Controller.text);
+                          globalVar.name2(_name2Controller.text);
+                          nextPageFade(const DateOfBirthScrren());
+                        });
                       }
-                      globalVar.name1(_name1Controller.text);
-                      globalVar.name2(_name2Controller.text);
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return const FingerprintScreen();
-                        },
-                      ));
-                    } else if (globalVar.onSelectScreen.value == 4) {
-                      if (_name1Controller.text.isEmpty ||
-                          _name2Controller.text.isEmpty) {
-                        _result('Please enter both names!');
-                        return;
+                      // fingerprint screen
+                      else if (globalVar.onSelectScreen.value == 3) {
+                        InterstitialAds.showAds(callBack : (){
+                          if (_name1Controller.text.isEmpty ||
+                              _name2Controller.text.isEmpty) {
+                            _result('Please enter both names!');
+                            return;
+                          }
+                          globalVar.name1(_name1Controller.text);
+                          globalVar.name2(_name2Controller.text);
+                          nextPageFade(FingerprintScreen());
+                        });
+                      } else if (globalVar.onSelectScreen.value == 4) {
+                        InterstitialAds.showAds(callBack : (){
+                          if (_name1Controller.text.isEmpty ||
+                              _name2Controller.text.isEmpty) {
+                            _result('Please enter both names!');
+                            return;
+                          }
+                          globalVar.name1(_name1Controller.text);
+                          globalVar.name2(_name2Controller.text);
+                          nextPageFade( NumberMatchScreen());
+                        });
+                      } else if (globalVar.onSelectScreen.value == 5) {
+                        InterstitialAds.showAds(callBack : (){
+                          if (_name1Controller.text.isEmpty ||
+                              _name2Controller.text.isEmpty) {
+                            _result('Please enter both names!');
+                            return;
+                          }
+                          globalVar.name1(_name1Controller.text);
+                          globalVar.name2(_name2Controller.text);
+                          nextPageFade(HorsoscopeMatchScreen());
+
+                        });
                       }
-                      globalVar.name1(_name1Controller.text);
-                      globalVar.name2(_name2Controller.text);
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return const NumberMatchScreen();
-                        },
-                      ));
-                    } else if (globalVar.onSelectScreen.value == 5) {
-                      if (_name1Controller.text.isEmpty ||
-                          _name2Controller.text.isEmpty) {
-                        _result('Please enter both names!');
-                        return;
-                      }
-                      globalVar.name1(_name1Controller.text);
-                      globalVar.name2(_name2Controller.text);
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return const HorsoscopeMatchScreen();
-                        },
-                      ));
-                    }
-                  }),
-              const SizedBox(height: 16.0),
-              (_countdownValue.value == 0)
-                  ? const SizedBox()
-                  : RepaintBoundary(
-                      key: _globalKey,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Lottie.asset("images/Animation_Hart.json"),
-                          Text(
-                            _result.value.isEmpty
-                                ? '${_countdownValue.value}%'
-                                : _result.value,
-                            style:TextStyle(
-                              fontSize: 30,
-                              color: Colors.white,
-                                fontFamily: "loveLike"
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration: const BoxDecoration(
-                                    color: Colors.red, shape: BoxShape.circle),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  _name1Controller.text
-                                      .toString()
-                                      .toUpperCase()
-                                      .substring(0, 1),
-                                    style: const TextStyle(
-                                        fontSize: 24,
-                                        color: Colors.white,
-                                        fontFamily: "loveLike")),
+                    }),
+                const SizedBox(height: 16.0),
+                (_countdownValue.value == 0)
+                    ? const SizedBox()
+                    : RepaintBoundary(
+                        key: _globalKey,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Lottie.asset("images/Animation_Hart.json"),
+                            Text(
+                              _result.value.isEmpty
+                                  ? '${_countdownValue.value}%'
+                                  : _result.value,
+                              style:const TextStyle(
+                                fontSize: 30,
+                                color: Colors.white,
+                                  fontFamily: "loveLike"
                               ),
-                              Container(
-                                height: 50,
-                                width: 50,
-                                decoration: const BoxDecoration(
-                                    color: Colors.red, shape: BoxShape.circle),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  _name2Controller.text
-                                      .toString()
-                                      .toUpperCase()
-                                      .substring(0, 1),
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      fontFamily: "loveLike",
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: const BoxDecoration(
+                                      color: Colors.red, shape: BoxShape.circle),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    _name1Controller.text
+                                        .toString()
+                                        .toUpperCase()
+                                        .substring(0, 1),
+                                      style: const TextStyle(
+                                          fontSize: 24,
+                                          color: Colors.white,
+                                          fontFamily: "loveLike")),
+                                ),
+                                Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: const BoxDecoration(
+                                      color: Colors.red, shape: BoxShape.circle),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    _name2Controller.text
+                                        .toString()
+                                        .toUpperCase()
+                                        .substring(0, 1),
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 24,
+                                        fontFamily: "loveLike",
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-              (_countdownValue.value == 0)
-                  ? const SizedBox()
-                  : CustomButton(
-                      width: 120,
-                      text: "Share",
-                      onPressed: () {
-                        _captureAndSharePng();
-                      },
-                    ),
-            ],
+                (_countdownValue.value == 0)
+                    ? const SizedBox()
+                    : CustomButton(
+                        width: 120,
+                        text: "Share",
+                        onPressed: () {
+                          InterstitialAds.showAds(callBack : (){
+                            _captureAndSharePng();
+                          });
+                        },
+                      ),
+                const SizedBox(
+                  height: 40,
+                ),
+                _buildBottomBar(),
+              ],
+            ),
           ),
         );
       }),
     );
   }
-
+  Widget _buildBottomBar(){
+    return const Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: DisplayBannerAds(),
+        ),
+      ],
+    );
+  }
   @override
   void dispose() {
     _name1Controller.dispose();

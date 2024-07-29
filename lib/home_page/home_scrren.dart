@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Ads/BannerAds/banner_ads.dart';
+import '../Ads/IntrestialAds/intrestial_ads.dart';
 import '../global.dart';
 import '../love_calculator/name_test/name_test_scrren.dart';
 
@@ -62,6 +64,13 @@ class _HomeScrrenState extends State<HomeScrren> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.red,
+          leading: InkWell(
+              onTap: () {
+                InterstitialAds.showAds(callBack : (){
+                  Navigator.pop(context);
+                });
+              },
+              child: Icon(Icons.arrow_back,color: Colors.white,)),
           title: const Text(
             "Love Calculator",
             style: TextStyle(
@@ -72,7 +81,8 @@ class _HomeScrrenState extends State<HomeScrren> {
           ),
         ),
         body: SingleChildScrollView(
-          child: Column(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GridView.builder(
                 shrinkWrap: true,
@@ -84,46 +94,35 @@ class _HomeScrrenState extends State<HomeScrren> {
                     onTap: () {
                       if (index == 0) {
                         globalVar.onSelectScreen(0);
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return const NameTestScreen();
-                          },
-                        ));
+                        InterstitialAds.showAds(callBack : (){
+                          nextPageFade(const NameTestScreen());
+                        });
+
                       } else if (index == 1) {
                         globalVar.onSelectScreen(1);
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return const NameTestScreen();
-                          },
-                        ));
+                        InterstitialAds.showAds(callBack : (){
+                          nextPageFade(const NameTestScreen());
+                        });
                       } else if (index == 2) {
                         globalVar.onSelectScreen(2);
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return const NameTestScreen();
-                          },
-                        ));
+                        InterstitialAds.showAds(callBack : (){
+                          nextPageFade(const NameTestScreen());
+                        });
                       } else if (index == 3) {
                         globalVar.onSelectScreen(3);
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return const NameTestScreen();
-                          },
-                        ));
+                        InterstitialAds.showAds(callBack : (){
+                          nextPageFade(const NameTestScreen());
+                        });
                       } else if (index == 4) {
                         globalVar.onSelectScreen(4);
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return const NameTestScreen();
-                          },
-                        ));
+                        InterstitialAds.showAds(callBack : (){
+                          nextPageFade(const NameTestScreen());
+                        });
                       } else if (index == 5) {
                         globalVar.onSelectScreen(5);
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return const NameTestScreen();
-                          },
-                        ));
+                        InterstitialAds.showAds(callBack : (){
+                          nextPageFade(const NameTestScreen());
+                        });
                       }
                     },
                     child: Padding(
@@ -149,7 +148,7 @@ class _HomeScrrenState extends State<HomeScrren> {
                                 color: Colors.white,
                                   fontFamily: "loveLike"
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -157,10 +156,25 @@ class _HomeScrrenState extends State<HomeScrren> {
                   );
                 },
               ),
+              SizedBox(
+                height: 35,
+              ),
+              _buildBottomBar(),
             ],
           ),
         ),
       ),
+    );
+  }
+  Widget _buildBottomBar(){
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: DisplayBannerAds(),
+        ),
+      ],
     );
   }
 }

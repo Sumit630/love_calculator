@@ -18,6 +18,9 @@ import 'package:love_calculatror/wigets/button_custom.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../Ads/BannerAds/banner_ads.dart';
+import '../../Ads/IntrestialAds/intrestial_ads.dart';
+
 class FingerprintScreen extends StatefulWidget {
   const FingerprintScreen({super.key});
 
@@ -105,10 +108,17 @@ class _FingerprintScreenState extends State<FingerprintScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor:Colors.red,
+        leading: InkWell(
+            onTap: () {
+              customPrint("ewgergs");
+              InterstitialAds.showAds(callBack : (){
+                Navigator.pop(context);
+              });
+            },
+            child: Icon(Icons.arrow_back,color: Colors.white,)),
         title: Text(
           "Fingerprint Calculator",
-          style: GoogleFonts.rubik(
-              fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),
+          style: GoogleFonts.rubik(fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),
         ),
       ),
       body: Obx(() {
@@ -196,7 +206,10 @@ class _FingerprintScreenState extends State<FingerprintScreen> {
               (figerPrint1.isTrue && figerPrint2.isTrue)
               ?CustomButton(width: 120,text: "Calculator",
                   onPressed:() {
-                    _calculateLove();
+                    InterstitialAds.showAds(callBack : (){
+                      _calculateLove();
+                    });
+                    //_calculateLove();
                   },)
                   : const SizedBox(),
               (_countdownValue.value == 0)
@@ -253,13 +266,30 @@ class _FingerprintScreenState extends State<FingerprintScreen> {
                   ? const SizedBox()
                   :CustomButton(width: 120,text: "Share",
                   onPressed:(){
-                    _captureAndSharePng();
+                    InterstitialAds.showAds(callBack : (){
+                      _captureAndSharePng();
+                    });
                   }
               ),
+              SizedBox(
+                height: 5,
+              ),
+              _buildBottomBar(),
             ],
           ),
         );
       }),
+    );
+  }
+  Widget _buildBottomBar() {
+    return const Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: DisplayBannerAds(),
+        ),
+      ],
     );
   }
 }

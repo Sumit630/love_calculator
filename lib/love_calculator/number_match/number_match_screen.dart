@@ -17,6 +17,9 @@ import 'package:love_calculatror/wigets/button_custom.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../Ads/BannerAds/banner_ads.dart';
+import '../../Ads/IntrestialAds/intrestial_ads.dart';
+
 class NumberMatchScreen extends StatefulWidget {
   const NumberMatchScreen({super.key});
 
@@ -91,6 +94,14 @@ class _NumberMatchScreenState extends State<NumberMatchScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor:Colors.red,
+        leading: InkWell(
+            onTap: () {
+              customPrint("ewgergs");
+              InterstitialAds.showAds(callBack : (){
+                Navigator.pop(context);
+              });
+            },
+            child: Icon(Icons.arrow_back,color: Colors.white,)),
         title: Text(
           "Number Match Calculator",
           style: GoogleFonts.rubik(
@@ -204,7 +215,10 @@ class _NumberMatchScreenState extends State<NumberMatchScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomButton(width: 120,text: "Calculator", onPressed:() {
-                    _calculateLove();
+                    InterstitialAds.showAds(callBack : (){
+                      _calculateLove();
+                    });
+                   // _calculateLove();
                   },),
                 ],
               ),
@@ -306,15 +320,32 @@ class _NumberMatchScreenState extends State<NumberMatchScreen> {
                       ? const SizedBox():
                       CustomButton(width: 120,text: "Share",
                           onPressed:(){
-                            _captureAndSharePng();
+                            InterstitialAds.showAds(callBack : (){
+                              _captureAndSharePng();
+                            });
                           }
                       ),
                 ],
-              )
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              _buildBottomBar(),
             ],
           ),
         );
       }),
+    );
+  }
+  Widget _buildBottomBar() {
+    return const Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: DisplayBannerAds(),
+        ),
+      ],
     );
   }
 }

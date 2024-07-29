@@ -26,7 +26,6 @@ void customPrint(text) {
     log(text.toString());
   }
 }
-
 Future? nextPageFade(Widget page) {
-  return Get.to(page, transition: Transition.fade);
+  return Get.to(page, transition: Transition.upToDown);
 }

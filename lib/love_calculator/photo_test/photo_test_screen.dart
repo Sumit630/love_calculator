@@ -18,6 +18,9 @@ import 'package:love_calculatror/wigets/button_custom.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../Ads/BannerAds/banner_ads.dart';
+import '../../Ads/IntrestialAds/intrestial_ads.dart';
+
 class PhotoTestScreen extends StatefulWidget {
   const PhotoTestScreen({super.key});
 
@@ -120,139 +123,168 @@ class _PhotoTestScreenState extends State<PhotoTestScreen> {
             style: GoogleFonts.rubik(
                 fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),
           ),
+          leading: InkWell(
+              onTap: () {
+                customPrint("ewgergs");
+                InterstitialAds.showAds(callBack : (){
+                  Navigator.pop(context);
+                });
+              },
+              child: Icon(Icons.arrow_back,color: Colors.white,)),
         ),
         backgroundColor: Colors.white,
         body: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            _pickImage1();
-                          },
-                          child: Container(
-                            width: screenWidth / 2.8,
-                            height: screenHeight / 4,
-                            decoration: const BoxDecoration(
-                              color: Color(0xffFFBEC1),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              _pickImage1();
+                            },
+                            child: Container(
+                              width: screenWidth / 2.8,
+                              height: screenHeight / 4,
+                              decoration: const BoxDecoration(
+                                color: Color(0xffFFBEC1),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                              ),
+                              child: (_image == null)
+                                  ? const Icon(
+                                      Icons.camera_alt,
+                                      size: 100,
+                                    )
+                                  : Image.file(fit: BoxFit.cover, _image!),
                             ),
-                            child: (_image == null)
-                                ? const Icon(
-                                    Icons.camera_alt,
-                                    size: 100,
-                                  )
-                                : Image.file(fit: BoxFit.cover, _image!),
                           ),
-                        ),
-                        Text(
-                          "${globalVar.name1}",
-                          style: GoogleFonts.rubik(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w200,
-                              color: Colors.black),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            _pickImage2();
-                          },
-                          child: Container(
-                            width: screenWidth / 2.8,
-                            height: screenHeight / 4,
-                            decoration: const BoxDecoration(
-                              color: Color(0xffFFBEC1),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10)),
-                            ),
-                            child: (_image2 == null)
-                                ? const Icon(
-                                    Icons.camera_alt,
-                                    size: 100,
-                                  )
-                                : ClipRect(
-                                    child: Image.file(
-                                        fit: BoxFit.cover, _image2!)),
+                          Text(
+                            "${globalVar.name1}",
+                            style: GoogleFonts.rubik(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w200,
+                                color: Colors.black),
                           ),
-                        ),
-                        Text(
-                          "${globalVar.name2}",
-                          style: GoogleFonts.rubik(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w200,
-                              color: Colors.black),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                (_image == null || _image2 == null)
-                    ? const SizedBox():
-                CustomButton(width: 120,text: "Calculate Love", onPressed:() {
-                  _calculateLove();
-                },),
-                (_countdownValue.value == 0)
-                    ? const SizedBox()
-                    : RepaintBoundary(
-                        key: _globalKey,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Lottie.asset("images/Animation_Hart.json"),
-                            Text(
-                              _result.value.isEmpty
-                                  ? '${_countdownValue.value}%'
-                                  : _result.value,
-                              style: TextStyle(fontSize:30,color: Colors.white,fontFamily: "loveLike"),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                CircleAvatar(
-                                  maxRadius: 30,
-                                  backgroundImage: FileImage(_image!),
-                                ),
-                                CircleAvatar(
-                                  maxRadius: 30,
-                                  backgroundImage: FileImage(_image2!),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                        ],
                       ),
-                (_countdownValue.value == 0)
-                    ? SizedBox()
-                    :
-                    CustomButton(width: 120,text: "Share", onPressed:() {
-                      _captureAndSharePng();
-                    },),
-                // ElevatedButton(
-                //         onPressed: () {
-                //
-                //         },
-                //         child: const Text("Share"))
-              ],
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              _pickImage2();
+                            },
+                            child: Container(
+                              width: screenWidth / 2.8,
+                              height: screenHeight / 4,
+                              decoration: const BoxDecoration(
+                                color: Color(0xffFFBEC1),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                              ),
+                              child: (_image2 == null)
+                                  ? const Icon(
+                                      Icons.camera_alt,
+                                      size: 100,
+                                    )
+                                  : ClipRect(
+                                      child: Image.file(
+                                          fit: BoxFit.cover, _image2!)),
+                            ),
+                          ),
+                          Text(
+                            "${globalVar.name2}",
+                            style: GoogleFonts.rubik(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w200,
+                                color: Colors.black),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  (_image == null || _image2 == null)
+                      ? const SizedBox():
+                  CustomButton(width: 120,text: "Calculate Love", onPressed:() {
+                    InterstitialAds.showAds(callBack : (){
+                      _calculateLove();
+                    });
+                  },),
+                  (_countdownValue.value == 0)
+                      ? const SizedBox()
+                      : RepaintBoundary(
+                          key: _globalKey,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Lottie.asset("images/Animation_Hart.json"),
+                              Text(
+                                _result.value.isEmpty
+                                    ? '${_countdownValue.value}%'
+                                    : _result.value,
+                                style: TextStyle(fontSize:30,color: Colors.white,fontFamily: "loveLike"),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  CircleAvatar(
+                                    maxRadius: 30,
+                                    backgroundImage: FileImage(_image!),
+                                  ),
+                                  CircleAvatar(
+                                    maxRadius: 30,
+                                    backgroundImage: FileImage(_image2!),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                  (_countdownValue.value == 0)
+                      ? SizedBox()
+                      :
+                      CustomButton(width: 120,text: "Share", onPressed:() {
+                        InterstitialAds.showAds(callBack : (){
+                          _captureAndSharePng();
+                        });
+                      },),
+                  // ElevatedButton(
+                  //         onPressed: () {
+                  //
+                  //         },
+                  //         child: const Text("Share"))
+                  SizedBox(
+                    height: 40,
+                  ),
+                  _buildBottomBar(),
+                ],
+              ),
             ),
           ),
         ),
       );
     });
+  }
+  Widget _buildBottomBar(){
+    return const Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: DisplayBannerAds(),
+        ),
+      ],
+    );
   }
 }

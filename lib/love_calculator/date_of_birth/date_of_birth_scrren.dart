@@ -4,7 +4,6 @@ import 'dart:math';
 import 'dart:ui' as ui;
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -16,6 +15,9 @@ import 'package:love_calculatror/global.dart';
 import 'package:love_calculatror/wigets/button_custom.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
+
+import '../../Ads/BannerAds/banner_ads.dart';
+import '../../Ads/IntrestialAds/intrestial_ads.dart';
 
 class DateOfBirthScrren extends StatefulWidget {
   const DateOfBirthScrren({super.key});
@@ -112,6 +114,14 @@ class _DateOfBirthScrrenState extends State<DateOfBirthScrren> {
           style: GoogleFonts.rubik(
               fontSize: 24, fontWeight: FontWeight.w200, color: Colors.white),
         ),
+        leading: InkWell(
+            onTap: () {
+              customPrint("ewgergs");
+              InterstitialAds.showAds(callBack : (){
+                Navigator.pop(context);
+              });
+            },
+            child: Icon(Icons.arrow_back,color: Colors.white,)),
       ),
       body: Obx(() {
         customPrint(globalVar.name1);
@@ -147,7 +157,10 @@ class _DateOfBirthScrrenState extends State<DateOfBirthScrren> {
                 width: 120,
                   text: "Calculate Love",
                   onPressed:(){
-                    _calculateLove();
+                    InterstitialAds.showAds(callBack: () {
+                      _calculateLove();
+                    });
+                    // _calculateLove();
                   }
               ),
               (dateOfBirth1.text.isEmpty || dateOfBirth2.text.isEmpty)
@@ -247,8 +260,15 @@ class _DateOfBirthScrrenState extends State<DateOfBirthScrren> {
               (_countdownValue.value == 0)
                   ? const SizedBox()
                   :CustomButton(width: 120,text: "Share", onPressed:() {
-                _captureAndSharePng();
-                  },),
+                        InterstitialAds.showAds(callBack: () {
+                          _captureAndSharePng();
+                        });
+                      },
+                    ),
+              SizedBox(
+                height: 50,
+              ),
+              _buildBottomBar(),
             ],
           ),
         );
@@ -261,5 +281,17 @@ class _DateOfBirthScrrenState extends State<DateOfBirthScrren> {
     // _name2Controller.dispose();
     _timer?.cancel();
     super.dispose();
+  }
+
+  Widget _buildBottomBar() {
+    return const Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: DisplayBannerAds(),
+        ),
+      ],
+    );
   }
 }

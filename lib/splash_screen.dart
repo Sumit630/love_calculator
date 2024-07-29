@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:love_calculatror/global.dart';
 import 'package:love_calculatror/home_page/home_scrren.dart';
 
+import 'Ads/IntrestialAds/intrestial_ads.dart';
 import 'introduction/introduction_page.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -27,11 +29,9 @@ class _SplashScreenState extends State<SplashScreen> {
       Duration(seconds: 5),
       (timer) {
         timer.cancel();
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) {
-            return IntroductionPage();
-          },
-        ));
+        InterstitialAds.showAds(callBack : (){
+          nextPageFade(const  IntroductionPage());
+        });
       },
     );
   }

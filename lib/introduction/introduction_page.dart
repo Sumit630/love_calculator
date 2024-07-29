@@ -6,7 +6,11 @@ import 'package:love_calculatror/introduction/rate_us/rateing_page.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter/services.dart';
 
+import '../Ads/BannerAds/banner_ads.dart';
+import '../Ads/IntrestialAds/intrestial_ads.dart';
+import '../Ads/NativeAds/native_ads.dart';
 import '../Love_Quotes/love_quotes_scrren/love_qutoes_page.dart';
+import '../global.dart';
 class IntroductionPage extends StatefulWidget {
   const IntroductionPage({super.key});
 
@@ -132,59 +136,82 @@ class _IntroductionPageState extends State<IntroductionPage> {
           ),
           backgroundColor: Colors.red,
         ),
-        body:Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30,horizontal: 10),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image(image: AssetImage("images/love.png")),
-              Text("Love Matters",style: TextStyle(color: Colors.black,fontSize:40,fontFamily: "loveLike"),),
-              SizedBox(
-                height:70,
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context) {
-                    return const HomeScrren();
-                  },));
-                },
-                child: Container(
-                  height: screenHeight/14,
-                  width: screenWidth/3,
-                  decoration: const BoxDecoration(
-                      color: Colors.red,
-                    borderRadius: BorderRadius.all(Radius.circular(10))
-                  ),
-                  alignment: Alignment.center,
-                  child: Text("Love Test",style: TextStyle(
-                    fontSize: 24,color: Colors.white,fontFamily: "loveLike"
-                  )),
+        body:SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30,horizontal: 10),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image(image: AssetImage("images/love.png")),
+                Text("Love Matters",style: TextStyle(color: Colors.black,fontSize:40,fontFamily: "loveLike"),),
+                SizedBox(
+                  height:70,
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context) {
-                    return LoveQutoesPage();
-                  },));
-                },
-                child: Container(
-                  height: screenHeight/14,
-                  width: screenWidth/3,
-                  decoration: const BoxDecoration(
-                      color: Colors.red,
+                InkWell(
+                  onTap: () {
+                    InterstitialAds.showAds(callBack : (){
+                      nextPageFade(const  HomeScrren());
+                    });
+                  },
+                  child: Container(
+                    height: screenHeight/14,
+                    width: screenWidth/3,
+                    decoration: const BoxDecoration(
+                        color: Colors.red,
                       borderRadius: BorderRadius.all(Radius.circular(10))
+                    ),
+                    alignment: Alignment.center,
+                    child: Text("Love Test",style: TextStyle(
+                      fontSize: 24,color: Colors.white,fontFamily: "loveLike"
+                    )),
                   ),
-                  alignment: Alignment.center,
-                  child: Text("Love Quotes",style: TextStyle(fontSize: 24,color: Colors.white,fontFamily: "loveLike"),),
                 ),
-              ),
-            ],
+                const SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () {
+                    InterstitialAds.showAds(callBack : (){
+                      nextPageFade(const  LoveQutoesPage());
+                    });
+                  },
+                  child: Container(
+                    height: screenHeight/14,
+                    width: screenWidth/3,
+                    decoration: const BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.all(Radius.circular(10))
+                    ),
+                    alignment: Alignment.center,
+                    child: Text("Love Quotes",style: TextStyle(fontSize: 24,color: Colors.white,fontFamily: "loveLike"),),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                _buildBottomBar(),
+              ],
+            ),
           ),
         ),
       ),
+    );
+  }
+  Widget _buildBodyView(){
+    customPrint("222222");
+    return Center(
+      child: NativeAds(),
+    );
+  }
+  Widget _buildBottomBar(){
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: DisplayBannerAds(),
+        ),
+      ],
     );
   }
 }

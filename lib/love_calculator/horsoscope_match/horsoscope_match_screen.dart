@@ -16,6 +16,9 @@ import 'package:love_calculatror/wigets/button_custom.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../Ads/BannerAds/banner_ads.dart';
+import '../../Ads/IntrestialAds/intrestial_ads.dart';
+
 class HorsoscopeMatchScreen extends StatefulWidget {
   const HorsoscopeMatchScreen({super.key});
 
@@ -129,6 +132,14 @@ class _HorsoscopeMatchScreenState extends State<HorsoscopeMatchScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor:Colors.red,
+        leading: InkWell(
+            onTap: () {
+              customPrint("ewgergs");
+              InterstitialAds.showAds(callBack : (){
+                Navigator.pop(context);
+              });
+            },
+            child: Icon(Icons.arrow_back,color: Colors.white,)),
         title: Text(
           "Horoscope Match Calculator",
           style: GoogleFonts.rubik(
@@ -242,7 +253,9 @@ class _HorsoscopeMatchScreenState extends State<HorsoscopeMatchScreen> {
                             width: 120,
                             text: "Calculate",
                             onPressed:(){
-                              _calculateLove();
+                              InterstitialAds.showAds(callBack : (){
+                                _calculateLove();
+                              });
                         }
                         ),
                       ],
@@ -261,7 +274,7 @@ class _HorsoscopeMatchScreenState extends State<HorsoscopeMatchScreen> {
                               _result.value.isEmpty
                                   ? '${_countdownValue.value}%'
                                   : _result.value,
-                              style:TextStyle(fontSize: 30,color: Colors.white,fontFamily: "loveLike")
+                              style:const TextStyle(fontSize: 30,color: Colors.white,fontFamily: "loveLike")
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -334,24 +347,41 @@ class _HorsoscopeMatchScreenState extends State<HorsoscopeMatchScreen> {
                         ),
                       ),
                     ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   (_countdownValue.value == 0)
-                      ? SizedBox():
+                      ? const SizedBox():
                       CustomButton(width: 120,text: "Share", onPressed:() {
-                        _captureAndSharePng();
+                        InterstitialAds.showAds(callBack : (){
+                          _captureAndSharePng();
+                        });
                       },)
 
                 ],
-              )
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              _buildBottomBar(),
             ],
           ),
         );
       }),
+    );
+  }
+  Widget _buildBottomBar() {
+    return const Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: DisplayBannerAds(),
+        ),
+      ],
     );
   }
 }
